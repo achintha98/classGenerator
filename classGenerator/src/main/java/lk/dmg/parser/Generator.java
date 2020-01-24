@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
+
 public class Generator {
 
 
@@ -68,7 +70,7 @@ public class Generator {
                         if (!(mapOfAttr.containsKey(classListVariable))) {
                             for (Object obje : classesSet) {
                                 String classWithNoEntity = (String) obje;
-                                if (classListVariable.contains(classWithNoEntity)) {
+                                if(containsIgnoreCase(classListVariable,classWithNoEntity)){
                                     String classListToCamel = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, classListVariable);
                                     DataHold listDataHold = new DataHold("List<"+classWithNoEntity+">", classListToCamel + "List = new ArrayList<>()");
                                     hotelDataFields.add(listDataHold);
